@@ -32,32 +32,31 @@ class CustomHomeView(LoginRequiredMixin, View):
         return render(request, 'home.html', context)
     
     def post(self, request):
-        if request.method == 'POST':
-            user = request.user
-            content = request.POST.get('content')
-            topic = request.POST.get('topic')
-            image = request.FILES.get('add_photo')
+        user = request.user
+        content = request.POST.get('content')
+        topic = request.POST.get('topic')
+        image = request.FILES.get('add_photo')
 
-            if not content:
-                messages.info(request, 'The content field is required')
-                return redirect('home')
-            
-            if not Topic.objects.filter(name=topic).exists():
-                new_topic = Topic.objects.create(name=topic)
-            else:
-                new_topic = Topic.objects.get(name=topic)
+        if not content:
+            messages.info(request, 'The content field is required')
+            return redirect('home')
+        
+        if not Topic.objects.filter(name=topic).exists():
+            new_topic = Topic.objects.create(name=topic)
+        else:
+            new_topic = Topic.objects.get(name=topic)
 
-            new_post = Post.objects.create(
-                user=user,
-                text=content,
-                topic=new_topic,
-                image=image,
-            )
+        new_post = Post.objects.create(
+            user=user,
+            text=content,
+            topic=new_topic,
+            image=image,
+        )
 
-            if new_post is not None:
-                new_post.save()
+        if new_post is not None:
+            new_post.save()
 
-                return redirect('home')
+            return redirect('home')
 
 class CustomLoginView(View):
     def get(self, request):
