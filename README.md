@@ -2,4 +2,5 @@
 Not a Clean code
 
 
-https://github.com/user-attachments/assets/517b6569-d8d2-4edb-9177-74680ea2736e
+
+![How to create a social media app using Django](https://github.com/user-attachments/assets/502436b8-b715-4cf6-8d26-9945e1b61ade)
